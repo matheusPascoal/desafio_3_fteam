@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-
-
+import 'package:playround/shared/core/theme/colors_login_page.dart';
 
 class SplashScreen extends StatefulWidget {
   final String title;
@@ -11,12 +10,10 @@ class SplashScreen extends StatefulWidget {
 }
 
 class SplashScreenState extends State<SplashScreen> {
-
-timeSplash()async{
-await Future.delayed(Duration(seconds: 3));
-Modular.to.pushNamedAndRemoveUntil('/login',(_)=> false);
-}
-
+  timeSplash() async {
+    await Future.delayed(Duration(seconds: 3));
+    Modular.to.pushNamedAndRemoveUntil('/login', (_) => false);
+  }
 
   @override
   void initState() {
@@ -26,11 +23,10 @@ Modular.to.pushNamedAndRemoveUntil('/login',(_)=> false);
 
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColor.black,
       body: Center(
-        child: Icon(Icons.ac_unit,size: 300,),
+        child: Image.asset('assets/logo.jpg'),
       ),
     );
   }

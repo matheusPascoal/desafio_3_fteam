@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'colors_login_page.dart';
 
 class BorderLogin {
-  
   OutlineInputBorder myinputborder() {
     //return type is OutlineInputBorder
     return OutlineInputBorder(

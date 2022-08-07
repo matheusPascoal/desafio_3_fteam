@@ -1,5 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:playround/app/modules/login/login_module.dart';
+import 'package:playround/app/modules/profile/profile_module.dart';
 import 'package:playround/app/modules/splash/splash_module.dart';
 
 class AppModule extends Module {
@@ -10,5 +11,6 @@ class AppModule extends Module {
   final List<ModularRoute> routes = [
     ModuleRoute(Modular.initialRoute, module: SplashModule()),
     ModuleRoute('/login', module: LoginModule()),
+    ModuleRoute('/profile', module: ProfileModule()),
   ];
 }

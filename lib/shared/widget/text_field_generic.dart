@@ -18,7 +18,8 @@ class GenericTextField extends StatefulWidget {
       this.validation,
       this.obscureText = false,
       this.labelText,
-      this.icon, this.suffuxIcon})
+      this.icon,
+      this.suffuxIcon})
       : super(key: key);
 
   @override
@@ -26,31 +27,37 @@ class GenericTextField extends StatefulWidget {
 }
 
 class _GenericTextFieldState extends State<GenericTextField> {
-  
-
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-      ),
-      width: size.width * 0.9,
-      height: size.height * 0.11,
-      child: TextFormField(
-          obscureText: widget.obscureText,
-          validator: widget.validation,
-          controller: widget.controller,
-          decoration: InputDecoration(
-            labelText: widget.labelText,
-            prefixIcon: Icon(
-              widget.icon,
-              color: AppColor.primary,
-            ),
-            border: BorderLogin().myinputborder(),
-            enabledBorder: BorderLogin().myinputborder(),
-           suffixIcon: widget.suffuxIcon,
-          )),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(widget.labelText!),
+        SizedBox(
+          height: 10,
+        ),
+        Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          width: size.width * 0.9,
+          height: size.height * 0.11,
+          child: TextFormField(
+              validator: widget.validation,
+              controller: widget.controller,
+              decoration: InputDecoration(
+                floatingLabelBehavior: FloatingLabelBehavior.never,
+                prefixIcon: Icon(
+                  widget.icon,
+                  color: AppColor.primary,
+                ),
+                border: BorderLogin().myinputborder(),
+                enabledBorder: BorderLogin().myinputborder(),
+                suffixIcon: widget.suffuxIcon,
+              )),
+        ),
+      ],
     );
   }
 }
