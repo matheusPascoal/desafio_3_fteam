@@ -1,24 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:playround/shared/core/theme/colors_login_page.dart';
+import 'package:playround/shared/core/theme/app_color.dart';
 
 class SplashScreen extends StatefulWidget {
-  final String title;
-  const SplashScreen({Key? key, this.title = 'SplashScreen'}) : super(key: key);
+  const SplashScreen({
+    Key? key,
+  }) : super(key: key);
   @override
   SplashScreenState createState() => SplashScreenState();
 }
 
 class SplashScreenState extends State<SplashScreen> {
-  timeSplash() async {
+  void timeSplash() async {
     await Future.delayed(Duration(seconds: 3));
     Modular.to.pushNamedAndRemoveUntil('/login', (_) => false);
   }
 
   @override
   void initState() {
-    timeSplash();
     super.initState();
+    timeSplash();
   }
 
   @override

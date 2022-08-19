@@ -1,5 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:playround/app/modules/profile/profile_screen.dart';
+import 'profile_screen.dart';
 
 class ProfileModule extends Module {
   @override
@@ -7,11 +7,14 @@ class ProfileModule extends Module {
 
   @override
   final List<ModularRoute> routes = [
-    ChildRoute(Modular.initialRoute, child: (_, args) {
-      final name = args.data;
-      return ProfileScreen(
-        name: name,
-      );
-    }),
+    ChildRoute(
+      Modular.initialRoute,
+      child: (_, args) {
+        final name = args.data;
+        return ProfileScreen(
+          name: name,
+        );
+      },
+    ),
   ];
 }

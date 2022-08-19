@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:playround/shared/core/service/image_icons.dart';
-import 'package:playround/shared/core/validations/validate.dart';
-import 'package:playround/shared/widget/generic_button.dart';
-import 'package:playround/shared/widget/password_field.dart';
-import '../../../shared/widget/text_field_generic.dart';
+import '../../../shared/core/service/images_app.dart';
+import '../../../shared/core/theme/app_color.dart';
+import '../../../shared/core/validations/validate.dart';
+import '../../../shared/widgets/generic_button.dart';
+import '../../../shared/widgets/generic_text_field.dart';
+import '../../../shared/widgets/password_field.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -14,66 +15,118 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  TextEditingController controllerName = TextEditingController();
-  TextEditingController controllerEmail = TextEditingController();
-  TextEditingController controllerSenha = TextEditingController();
+  final TextEditingController controllerName = TextEditingController();
+  final TextEditingController controllerEmail = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
-  var _keyAuth = GlobalKey<FormState>();
-  bool isObscure = false;
+  final _keyAuth = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return Scaffold(
-        backgroundColor: Colors.white,
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 70),
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 24),
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: Row(
-                        children: [
-                          Image.network(
-                            imageIcons.byeImage,
-                            height: 20,
-                            width: 20,
-                            alignment: Alignment.topLeft,
-                          ),
-                          Text(' Hello,',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 20)),
-                        ],
+      backgroundColor: AppColor.secondary,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.symmetric(vertical: size.height * 0.07),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: size.height * 0.04,
+              ),
+              Align(
+                alignment: Alignment.topLeft,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: size.width * 0.07,
+                  ),
+                  child: Row(
+                    children: [
+                      Image.network(
+                        AppImages.byeImage,
+                        width: size.width * 0.05,
+                        alignment: Alignment.topLeft,
                       ),
-                    ),
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: Text('Are you new here?',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 20)),
-                    ),
-                    SizedBox(
-                      height: 30,
-                    ),
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: Text(
-                        'if you have an account/Login',
+                      Text(
+                        ' Hello,',
                         style: TextStyle(
-                            color: Color.fromARGB(255, 148, 148, 147)),
+                          fontWeight: FontWeight.bold,
+                          fontSize: size.width * 0.05,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Align(
+                alignment: Alignment.topLeft,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: size.width * 0.07,
+                  ),
+                  child: Text(
+                    'Are you new here?',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: size.width * 0.05,
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: size.height * 0.04,
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: size.width * 0.07,
+                ),
+                child: Row(
+                  children: [
+                    Text(
+                      'if you have an account/',
+                      style: TextStyle(
+                        fontSize: size.width * 0.032,
+                        color: const Color.fromARGB(
+                          255,
+                          148,
+                          148,
+                          147,
+                        ),
                       ),
                     ),
-                    SizedBox(
-                      height: 55,
+                    Text(
+                      'Login',
+                      style: TextStyle(
+                        fontSize: size.width * 0.032,
+                        color: AppColor.black,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: size.height * 0.05,
+              ),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 30),
+                decoration: const BoxDecoration(
+                  color: AppColor.background,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20),
+                  ),
+                ),
+                child: Column(
+                  children: [
                     Form(
                       key: _keyAuth,
                       child: Column(
                         children: [
+                          SizedBox(
+                            height: size.height * 0.04,
+                          ),
                           GenericTextField(
                             validation: (value) =>
                                 ValidatesService.name(value!),
@@ -89,27 +142,34 @@ class _LoginScreenState extends State<LoginScreen> {
                             controller: controllerEmail,
                           ),
                           PasswordField(
+                            controller: passwordController,
                             labelText: 'Password',
+                          ),
+                          SizedBox(
+                            height: size.height * 0.09,
+                          ),
+                          GenericButton(
+                            onTap: () {
+                              if (_keyAuth.currentState!.validate()) {
+                                Modular.to.pushNamedAndRemoveUntil(
+                                  '/profile',
+                                  (_) => false,
+                                  arguments: controllerName.text,
+                                );
+                              }
+                            },
+                            text: 'Sing Up',
                           ),
                         ],
                       ),
                     ),
-                    SizedBox(
-                      height: 100,
-                    ),
-                    GenericButton(
-                      onTap: () {
-                        if (_keyAuth.currentState!.validate()) {
-                          Modular.to.pushNamedAndRemoveUntil(
-                              '/profile', (_) => false,
-                              arguments: controllerName.text);
-                        }
-                      },
-                      text: 'Sing Up',
-                    ),
-                  ]),
-            ),
+                  ],
+                ),
+              ),
+            ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
