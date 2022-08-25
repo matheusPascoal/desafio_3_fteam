@@ -2,7 +2,7 @@ import '../../model/model_flags.dart';
 import 'images_flags.dart';
 
 class FlagsAndCountry {
-  final flagList = [
+  static final flagList = [
     ModelFlags(image: ImagesFlags.brasil, country: 'Brasil'),
     ModelFlags(image: ImagesFlags.argentina, country: 'Argentina'),
     ModelFlags(image: ImagesFlags.ratanaba, country: 'Ratanaba'),

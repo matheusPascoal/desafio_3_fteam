@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import '../../../shared/core/service/images_app.dart';
-import '../../../shared/core/theme/app_color.dart';
 import '../../../shared/core/validations/validate.dart';
 import '../../../shared/widgets/generic_button.dart';
 import '../../../shared/widgets/generic_text_field.dart';
@@ -23,9 +22,10 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
+    final size = MediaQuery.of(context).size;
+    final theme = Theme.of(context);
     return Scaffold(
-      backgroundColor: AppColor.secondary,
+      backgroundColor: theme.secondaryHeaderColor,
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(vertical: size.height * 0.07),
@@ -87,19 +87,14 @@ class _LoginScreenState extends State<LoginScreen> {
                       'if you have an account/',
                       style: TextStyle(
                         fontSize: size.width * 0.032,
-                        color: const Color.fromARGB(
-                          255,
-                          148,
-                          148,
-                          147,
-                        ),
+                        color: theme.shadowColor,
                       ),
                     ),
                     Text(
                       'Login',
                       style: TextStyle(
                         fontSize: size.width * 0.032,
-                        color: AppColor.black,
+                        color: theme.cardColor,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -111,9 +106,9 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 30),
-                decoration: const BoxDecoration(
-                  color: AppColor.background,
-                  borderRadius: BorderRadius.only(
+                decoration: BoxDecoration(
+                  color: theme.backgroundColor,
+                  borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(20),
                     topRight: Radius.circular(20),
                   ),

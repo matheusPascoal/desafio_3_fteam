@@ -41,23 +41,25 @@ class _PasswordFieldState extends State<PasswordField> {
             validator: (value) => ValidatesService.password(value!),
             decoration: InputDecoration(
               enabledBorder: OutlineInputBorder(
-                borderSide: const BorderSide(color: AppColor.primary),
+                borderSide: BorderSide(color: Theme.of(context).primaryColor),
                 borderRadius: BorderRadius.circular(15),
               ),
               border: OutlineInputBorder(
-                borderSide: const BorderSide(width: 3, color: Colors.red),
+                borderSide:
+                    BorderSide(width: 3, color: Theme.of(context).errorColor),
                 borderRadius: BorderRadius.circular(15),
               ),
               focusedErrorBorder: OutlineInputBorder(
-                borderSide: const BorderSide(
+                borderSide: BorderSide(
                   strokeAlign: StrokeAlign.center,
                   width: 2,
-                  color: AppColor.primary,
+                  color: Theme.of(context).primaryColor,
                 ),
                 borderRadius: BorderRadius.circular(15),
               ),
               focusedBorder: OutlineInputBorder(
-                borderSide: const BorderSide(width: 3, color: AppColor.primary),
+                borderSide:
+                    BorderSide(width: 3, color: Theme.of(context).primaryColor),
                 borderRadius: BorderRadius.circular(15),
               ),
               prefixIcon: const Icon(

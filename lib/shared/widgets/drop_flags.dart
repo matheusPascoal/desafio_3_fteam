@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../core/service/flagsAndCountry.dart';
-import '../core/theme/app_color.dart';
 import '../model/model_flags.dart';
 
 class DropFlags extends StatefulWidget {
@@ -11,8 +10,6 @@ class DropFlags extends StatefulWidget {
 }
 
 class _DropFlagsState extends State<DropFlags> {
-  ModelFlags modelFlasg = ModelFlags();
-  FlagsAndCountry flagsAndCountry = FlagsAndCountry();
   @override
   void initState() {
     super.initState();
@@ -31,7 +28,7 @@ class _DropFlagsState extends State<DropFlags> {
         Container(
           height: 50,
           decoration: BoxDecoration(
-            border: Border.all(color: AppColor.primary),
+            border: Border.all(color: Theme.of(context).primaryColor),
             borderRadius: BorderRadius.circular(10),
           ),
           child: DropdownButton<ModelFlags>(
@@ -41,14 +38,13 @@ class _DropFlagsState extends State<DropFlags> {
               child: Icon(Icons.keyboard_arrow_down_outlined),
             ),
             isExpanded: true,
-            style: const TextStyle(color: AppColor.black),
+            style: TextStyle(color: Theme.of(context).cardColor),
             onChanged: (value) {
               setState(() {
                 dropdownValue = value;
-                flagsAndCountry;
               });
             },
-            items: flagsAndCountry.flagList
+            items: FlagsAndCountry.flagList
                 .map<DropdownMenuItem<ModelFlags>>((item) {
               return DropdownMenuItem<ModelFlags>(
                 child: Row(

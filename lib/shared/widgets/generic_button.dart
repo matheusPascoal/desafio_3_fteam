@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../core/theme/app_color.dart';
-
 class GenericButton extends StatelessWidget {
   final void Function()? onTap;
   final String text;
@@ -19,14 +17,14 @@ class GenericButton extends StatelessWidget {
             text,
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              color: Colors.white,
+              color: Theme.of(context).backgroundColor,
               fontSize: size.width * 0.05,
             ),
           ),
         ),
         height: size.width * 0.12,
         decoration: BoxDecoration(
-          color: AppColor.primary,
+          color: Theme.of(context).primaryColor,
           borderRadius: BorderRadius.circular(10),
         ),
       ),

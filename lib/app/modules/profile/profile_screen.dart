@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import '../../../shared/core/service/images_app.dart';
-import '../../../shared/core/theme/app_color.dart';
 import '../../../shared/widgets/display_widget.dart';
 import '../../../shared/widgets/drop_flags.dart';
 import '../../../shared/widgets/generic_button.dart';
@@ -20,9 +19,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
+    final size = MediaQuery.of(context).size;
+    final theme = Theme.of(context);
     return Scaffold(
-      backgroundColor: AppColor.background,
+      backgroundColor: theme.secondaryHeaderColor,
       body: SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.symmetric(vertical: size.width * 0.07),
@@ -56,12 +56,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     SizedBox(
                       height: size.width * 0.05,
                     ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 10),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: Text(
                         'Add your profile photo.',
                         style: TextStyle(
-                          color: Color.fromARGB(255, 201, 198, 198),
+                          color: theme.shadowColor,
                         ),
                       ),
                     ),
@@ -74,9 +74,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
               Container(
                 padding: EdgeInsets.symmetric(horizontal: size.width * 0.07),
                 width: size.height * 0.8,
-                decoration: const BoxDecoration(
-                  color: Color.fromARGB(255, 244, 241, 241),
-                  borderRadius: BorderRadius.only(
+                decoration: BoxDecoration(
+                  color: theme.backgroundColor,
+                  borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(20),
                     topRight: Radius.circular(20),
                   ),

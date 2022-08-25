@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../core/theme/app_color.dart';
 
 class GenericTextField extends StatefulWidget {
@@ -47,18 +46,19 @@ class _GenericTextFieldState extends State<GenericTextField> {
             controller: widget.controller,
             decoration: InputDecoration(
               enabledBorder: OutlineInputBorder(
-                borderSide: const BorderSide(color: AppColor.primary),
+                borderSide: BorderSide(color: Theme.of(context).primaryColor),
                 borderRadius: BorderRadius.circular(15),
               ),
               border: OutlineInputBorder(
-                borderSide: const BorderSide(width: 3, color: Colors.red),
+                borderSide:
+                    BorderSide(width: 3, color: Theme.of(context).errorColor),
                 borderRadius: BorderRadius.circular(15),
               ),
               focusedErrorBorder: OutlineInputBorder(
-                borderSide: const BorderSide(
+                borderSide: BorderSide(
                   strokeAlign: StrokeAlign.center,
                   width: 2,
-                  color: AppColor.primary,
+                  color: Theme.of(context).primaryColor,
                 ),
                 borderRadius: BorderRadius.circular(15),
               ),
@@ -73,12 +73,3 @@ class _GenericTextFieldState extends State<GenericTextField> {
     );
   }
 }
-
-// OutlineInputBorder myinputborder() {
-//   return const OutlineInputBorder(
-//     borderRadius: BorderRadius.all(Radius.circular(12)),
-//     borderSide: BorderSide(
-//       color: AppColor.primary,
-//     ),
-//   );
-// }

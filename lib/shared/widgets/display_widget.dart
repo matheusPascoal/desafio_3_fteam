@@ -21,8 +21,10 @@ class DisplayWidget extends StatelessWidget {
           child: Center(
             child: Text(
               name,
-              style: const TextStyle(
-                  color: Colors.black, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                color: Theme.of(context).cardColor,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
         ),
